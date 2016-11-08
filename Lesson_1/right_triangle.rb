@@ -20,11 +20,9 @@ def triangle(a,b,c)
   first_side = triangle[0]
   second_side = triangle[1]
 
-  if (first_side**2) + (second_side**2) == (hypo**2)
-    puts "SOX"
-  end
 
-  if (a == b || b == c || a == c) && ((first_side**2) + (second_side**2)) == (hypo**2)
+
+  if (a == b || b == c || a == c) && (first_side**2) + (second_side**2) == (hypo**2)
     puts "Треугольник равнобедренный и прямоугольный" #Не нашел рабочий пример из-за хитрости дробных чисел в руби
   elsif a == b && b ==c
     puts "Треугольник равнобедренный и равносторонний"
