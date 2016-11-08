@@ -21,7 +21,7 @@ def triangle(a,b,c)
   second_side = triangle[1]
 
   if a == b && b ==c
-    puts "Треугольник равносторонний"
+    puts "Треугольник равнобедренный и равносторонний"
   elsif (first_side**2) + (second_side**2) == (hypo**2) #Math.hypot(first_side, second_side) == hypo
     puts "Треугольник прямоугольный"
   elsif a == b || b == c || a == c
