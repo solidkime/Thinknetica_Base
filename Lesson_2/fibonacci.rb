@@ -10,6 +10,7 @@ end
 
 p fibonacci
 
+#fibonacci = [1,1]
 #while (fibonacci[-2] + fibonacci[-1]) < 100
 #  fibonacci << fibonacci[-2] + fibonacci[-1]
 #end
@@ -17,7 +18,7 @@ p fibonacci
 #p fibonacci
 
 ###### Или так ########
-
+#fibonacci = [1,1]
 # l = lambda {fibonacci[-2] + fibonacci[-1]}
 # while l.call < 100
 #   fibonacci << l.call
