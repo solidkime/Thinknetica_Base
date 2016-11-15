@@ -1,10 +1,10 @@
+array = []
 x = 10
 until x > 100
-  puts x
+  array << x
   x += 5
-  
 end
-
+p array
 #Прикольное решение, но не мое
 # array = []
 
