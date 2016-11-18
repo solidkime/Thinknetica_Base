@@ -24,6 +24,8 @@ class Station
       end
     end
   end
+
+
 end
 
 class Route
@@ -92,9 +94,9 @@ end
 def current_station
   route.stations[@index_station]
 end
-
+# 0 != 3, 1 ___ 1 !=3, 2 !=3
 def next_station
-  if index_station != route.stations.count #show_current_station != route.stations.last
+  if index_station != (route.stations.count)- 1 #show_current_station != route.stations.last
     route.stations[index_station + 1]
   else
     puts "Поезд уже на конечной"
@@ -111,12 +113,13 @@ def previous_station
 end
 
 def go_to_next_station
-  if index_station < (route.stations.count -1)
-      self.index_station +=1
-      current_station.minus_train(self)
-      next_station.plus_train(self)
+  if index_station < (route.stations.count - 1)
+    current_station.minus_train(self)
+    next_station.plus_train(self)
+    self.index_station +=1
+    puts "fuck #{next_station}"
     else
-      puts 'Поезд уже на кончной'
+      puts 'Поезд уже на конечной'
     end
 end
 
