@@ -117,7 +117,6 @@ def go_to_next_station
     current_station.minus_train(self)
     next_station.plus_train(self)
     self.index_station +=1
-    puts "fuck #{next_station}"
     else
       puts 'Поезд уже на конечной'
     end
