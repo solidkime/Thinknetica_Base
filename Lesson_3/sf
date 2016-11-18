@@ -1,0 +1,18 @@
+load './station.rb'
+station1 = Station.new('1st')
+station2 = Station.new('2nd')
+station3 = Station.new('3d')
+
+route = Route.new(station1, station3)
+route.add_station(station2)
+
+train = Train.new(777, :people, 5)
+train.get_route(route)
+
+train.go_to_next_station
+
+
+
+load './station.rb'
+
+    puts "index station: #{index_station} < #{route.stations.count-1}"
