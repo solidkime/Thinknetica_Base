@@ -16,19 +16,13 @@ class Station
     trains.delete(train) if trains
   end
 
-  def show_trains(type=nil)
+  def trains_by_type(type=nil)
     if type
-    current_trains = {}
-    trains.each do |train|
-      current_trains[train.id] = train.type if train.type == type
-    end
-    else
       current_trains = []
       trains.each do |train|
-        current_trains << train.id
+        current_trains << train if train.type == type
       end
     end
-    current_trains
   end
 end
 
@@ -117,12 +111,12 @@ def previous_station
 end
 
 def go_to_next_station
-    if index_station < (route.stations.count -1)
+  if index_station < (route.stations.count -1)
       self.index_station +=1
-      route.current_station.minus_train
-      route.next_station.plus_train
-    elsif index_station > (route.stations.count -1)
-      puts "Поезд на конечной"
+      current_station.minus_train(self)
+      next_station.plus_train(self)
+    else
+      puts 'Поезд уже на кончной'
     end
 end
 
