@@ -13,7 +13,7 @@ class Station
   end
 
   def minus_train(train)
-    trains.delete(train) if trains
+    trains.delete(train)
   end
 
   def trains_by_type(type=nil)
@@ -72,18 +72,20 @@ class Train
   end
 #  Возможно лучше было бы два метода вместо wagons_action, но задание звучит
 #  будто нужен один метод. Могу переделать.
-def wagons_action(action)
-  if self.speed == 0
-    case action
-    when 'plus'
-      self.wagons += 1
-    when 'minus'
-      self.wagons -=1
-    end
-  else
-    puts "Для операций с вагонами поезд должен стоять!"
+
+def wagon_plus
+  self.wagons += 1 self.speed == 0
   end
+else
+  puts "Для операций с вагонами поезд должен стоять!"
 end
+
+def wagon_minus
+  self.wagons -= 1 self.speed == 0
+else
+  puts "Для операций с вагонами поезд должен стоять!"
+end
+
 
 def get_route(route)
   self.route = route
