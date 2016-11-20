@@ -1,53 +1,3 @@
-class Station
-  attr_accessor :trains
-  attr_reader :name
-
-
-  def initialize(name)
-    @name = name
-    @trains = []
-  end
-
-  def plus_train(train)
-    trains << train
-  end
-
-  def minus_train(train)
-    trains.delete(train)
-  end
-
-  def trains_by_type(type=nil)
-    if type
-      current_trains = []
-      trains.each do |train|
-        current_trains << train if train.type == type
-      end
-    end
-  end
-end
-
-class Route
-  attr_reader :stations
-
-  def initialize(start, finish)
-
-  @start = start
-  @finish = finish
-
-  @stations = [start, finish]
-  end
-
-  def add_station(station)
-    stations.insert(-2, station)
-  end
-
-  def delete_station(station)
-    stations.delete(station)
-  end
-end
-
-
-
 class Train
   attr_accessor :speed
   attr_accessor :wagons
@@ -70,6 +20,7 @@ class Train
   def stop
     self.speed = 0
   end
+
 
   def wagon_plus
     if self.speed == 0

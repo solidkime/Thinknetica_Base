@@ -52,11 +52,6 @@ class SportCar < Car
   end
 end
 
-class X
-  def start_engine
-    puts "Hello!"
-  end
-end
 class Driver
   def drive(car)
     # сесть в машину
