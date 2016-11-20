@@ -24,33 +24,10 @@ class Car
   def start_engine!
     self.current_rpm = initial_rpm
   end
+
+  # остановить двигатель
 end
 
-class Truck < Car
-  def loading
-  end
-
-  protected
-
-  def initial_rpm
-    500
-  end
-
-end
-
-class SportCar < Car
-  def start_engine
-    puts "Click!!"
-    super
-    puts "Wroom!!"
-  end
-
-  protected
-
-  def initial_rpm
-    1000
-  end
-end
 
 class Driver
   def drive(car)

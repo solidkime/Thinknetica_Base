@@ -16,25 +16,20 @@ class Station
     trains.delete(train)
   end
 
-  def trains_by_type(type=nil)
-    if type
-      current_trains = []
-      trains.each do |train|
-        current_trains << train if train.type == type
-      end
+  def trains_by_type(type)
+    current_trains = []
+    trains.each do |train|
+      current_trains << train if train.type == type
     end
   end
 end
 
 class Route
   attr_reader :stations
-
   def initialize(start, finish)
-
-  @start = start
-  @finish = finish
-
-  @stations = [start, finish]
+    @start = start
+    @finish = finish
+    @stations = [start, finish]
   end
 
   def add_station(station)

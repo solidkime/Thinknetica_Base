@@ -1,4 +1,7 @@
 load './station.rb'
+load './train.rb'
+load './route.rb'
+
 station1 = Station.new('1st')
 station2 = Station.new('2nd')
 station3 = Station.new('3d')
