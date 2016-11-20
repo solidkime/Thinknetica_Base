@@ -1,26 +1,68 @@
 class Car
-  attr_accessor :speed
+  attr_reader :current_rpm
 
-  attr_reader :engine_volume
-
-  def initialize(speed = 0, engine_volume)
-    @speed = speed
-    @engine_volume = engine_volume
+  def initialize
+    @current_rpm = 0
   end
+
   def start_engine
-    puts "Wroom!"
+    start_engine! if engine_stopped?
   end
 
-  def beep
-    puts "beep beep"
+  def engine_stopped?
+    current_rpm.zero?
   end
 
-  def stop
-    self.speed = 0
+  protected
+
+  attr_writer :current_rpm
+
+  def initial_rpm
+    700
   end
 
-  def go
-    self.speed = 50
+  def start_engine!
+    self.current_rpm = initial_rpm
+  end
+end
+
+class Truck < Car
+  def loading
+  end
+
+  protected
+
+  def initial_rpm
+    500
+  end
+
+end
+
+class SportCar < Car
+  def start_engine
+    puts "Click!!"
+    super
+    puts "Wroom!!"
+  end
+
+  protected
+
+  def initial_rpm
+    1000
+  end
+end
+
+class X
+  def start_engine
+    puts "Hello!"
+  end
+end
+class Driver
+  def drive(car)
+    # сесть в машину
+    # запустить двигатель
+    car.start_engine
+    # тронуться с места
   end
 end
 

@@ -70,8 +70,7 @@ class Train
   def stop
     self.speed = 0
   end
-#  Возможно лучше было бы два метода вместо wagons_action, но задание звучит
-#  будто нужен один метод. Могу переделать.
+
 
 def wagon_plus
   self.wagons += 1 self.speed == 0
@@ -96,7 +95,7 @@ end
 def current_station
   route.stations[@index_station]
 end
-# 0 != 3, 1 ___ 1 !=3, 2 !=3
+
 def next_station
   if index_station != (route.stations.count)- 1 #show_current_station != route.stations.last
     route.stations[index_station + 1]
