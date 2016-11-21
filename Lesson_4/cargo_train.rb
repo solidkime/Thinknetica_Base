@@ -4,10 +4,4 @@ class CargoTrain < Train
   def initialize
     @type = :cargo
   end
-
-  def wagon_plus
-    if type
-    super
-
-  end
 end
