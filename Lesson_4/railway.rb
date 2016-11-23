@@ -8,6 +8,7 @@ require_relative 'passenger_wagon'
 require_relative 'cargo_wagon'
 
 class Railway
+  
   def menu
 
     puts "1. Создание станции"
@@ -92,8 +93,10 @@ class Railway
 
   def edit_train
 
+    loop do
+
     puts "Выберите поезд с которым будем проводить операции:"
-    puts "Чтобы выбрать поезд введите его порядковый номер или оставьте поле пустым, чтобы вернуться в предыдущее меню:"
+    puts "Чтобы выбрать поезд введите его порядковый или по умолчанию будет выбран нулевой поезд:"
    
     @trains.each do |index, train|
       puts "#{index}. айди поезда:#{train.id}, тип поезда: #{train.type}"
@@ -103,7 +106,6 @@ class Railway
 
     request = gets.chomp.to_i
 
-    loop do
 
       if @trains[request]
         train = @trains[request]
@@ -132,7 +134,7 @@ class Railway
       when 3
         puts "Можно поместить поезд на такие станции:"
         @stations.each do |index, station|
-          puts "#{id} #{station.name}"
+          puts "Station number #{index} named #{station.name}"
         end
         puts "Введите номер станции или нажмите Enter для выхода"
 
@@ -157,8 +159,13 @@ class Railway
   def list
     puts @stations
     puts @trains
+    menu
   end
 
+  attr_accessor :stations
+  attr_accessor :trains
+  attr_accessor :index_trains
+  attr_accessor :index_stations
 end
 
 
