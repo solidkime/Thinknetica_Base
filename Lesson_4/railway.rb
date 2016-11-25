@@ -8,7 +8,7 @@ require_relative 'passenger_wagon'
 require_relative 'cargo_wagon'
 
 class Railway
-  
+
   def menu
 
     puts "1. Создание станции"
@@ -38,8 +38,8 @@ class Railway
   private
 
   def create_station
-    @stations ||= {}
-    @index_stations ||= 0
+    stations ||= {}
+    index_stations ||= 0
 
     loop do
       puts "Для выхода ничего не вводите и нажмите Enter"
