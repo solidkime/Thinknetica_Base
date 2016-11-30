@@ -33,8 +33,7 @@ class Railway
       exit
     end
   end
-
-
+  
   private
 
   def create_station
@@ -167,17 +166,3 @@ class Railway
   attr_accessor :index_trains
   attr_accessor :index_stations
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
