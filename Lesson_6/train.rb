@@ -1,6 +1,6 @@
 require_relative 'manufacturer'
 class Train
-  ID_FORMAT = /^\d+\z/
+  ID_FORMAT = /^[a-zA-Z0-9]{3}-?([a-zA-Z0-9]){2}$/ 
 
   include Manufacturer
 
@@ -111,7 +111,7 @@ class Train
 
   def validate!
     raise "Train id can't be nil" if id.nil?
-    raise "Train id must be number" if id.to_s !~ ID_FORMAT
+    raise "Train id is wrong format, contact service" if id.to_s !~ ID_FORMAT
     raise "Type myst be symbol" unless type.is_a? Symbol
     true
   end

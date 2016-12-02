@@ -70,19 +70,29 @@ class Railway
 
       case train_type
       when 1
+        begin
         puts "Создаем пассажирский поезд"
         puts "Введите номер поезда"
-        train_id = gets.chomp.to_i
+        train_id = gets.chomp
         print '>'
         @trains[@index_trains] = Train.new(train_id, :passenger)
+      rescue RuntimeError => e
+        puts e.message
+        retry
         @index_trains += 1
+      end
       when 2
+        begin
         puts "Создаем грузовой поезд"
         puts "Введите номер поезда"
-        train_id = gets.chomp.to_i
+        train_id = gets.chomp
         print '>'
         @trains[@index_trains] = Train.new(train_id, :cargo)
+      rescue RuntimeError => e
+        puts e.message
+        retry
         @index_trains += 1
+      end
       when 0
         puts @trains
         menu
