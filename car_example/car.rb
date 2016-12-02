@@ -1,4 +1,8 @@
+require_relative 'joker'
+
+
 class Car
+  include Joker
   attr_reader :current_rpm
 
   def initialize
@@ -11,6 +15,10 @@ class Car
 
   def engine_stopped?
     current_rpm.zero?
+  end
+
+  def omg
+    kek
   end
 
   protected
@@ -26,6 +34,9 @@ class Car
   end
 
   # остановить двигатель
+end
+
+class Bus < Car
 end
 
 

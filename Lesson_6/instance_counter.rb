@@ -4,8 +4,14 @@ module InstanceCounter
     base.extend ClassMethods
     base.send :include, InstanceMethoods
   module ClassMethods
+    attr_accessor :instances
   end
 
   module InstanceMethoods
+
+    private
+    def register_instance
+      self.class.instances += 1
+    end
   end
 end

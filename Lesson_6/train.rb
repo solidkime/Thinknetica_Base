@@ -1,6 +1,7 @@
 require_relative 'manufacturer'
 class Train
   ID_FORMAT = /^\d+\z/
+
   include Manufacturer
 
   attr_reader :speed
@@ -16,10 +17,14 @@ class Train
     @wagons = []
     @speed = 0
     @@trains[@id] = self
+    validate!
   end
 
-
-
+  def valid?
+    validate!
+  rescue
+    false
+  end
 
   def self.find(id)
     @@trains[id]
@@ -104,6 +109,13 @@ class Train
 
   protected
 
+  def validate!
+    raise "Train id can't be nil" if id.nil?
+    raise "Train id must be number" if id.to_s !~ ID_FORMAT
+    raise "Type myst be symbol" unless type.is_a? Symbol
+    true
+  end
+
   # Смотреть скорость можно и не опасно, а вот менять ее на любую нельзя 
   # (и невозможно моментально, если говорить о настоящем поезде).
   # Используем protected, потому что хотим, чтобы функционал сохранился и в подклассах.
@@ -117,7 +129,5 @@ class Train
   # Мы не хотим чтобы кто-то мог сменить маршрут без установки поезда на стартовую станцию.
   # Нужерн этот функционал в подклассах
   attr_writer :route
-
-  attr_writer :type
 
 end
