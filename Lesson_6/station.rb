@@ -8,8 +8,8 @@ class Station
   def initialize(name)
     @name = name
     @trains = []
+    validate! #тут тоже переместил валидацию до помещения в массив
     @@all_stations << self
-    validate!
   end
 
   def valid?
@@ -40,6 +40,8 @@ class Station
 
   private
   def validate!
+    raise "Name can't be blank" if name == ''
+    raise "Station name should be more than 3 letters" if name.length < 3
     raise "Station must contain only letters and start with a capital letter" if name !~ STATION_FORMAT
     true
   end

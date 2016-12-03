@@ -6,8 +6,10 @@ class Route
   def initialize(start, finish)
     @start = start
     @finish = finish
-    @stations = [start, finish]
+    # Это имелось ввиду? >Тут стоит добавить валидации на то, что start и first - объекты именно класса Station
+    # У меня же валидация это и проверяет, правда стояла не там, насколько я понял.
     validate!
+    @stations = [start, finish]
   end
 
   def valid?

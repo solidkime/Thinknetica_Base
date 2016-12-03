@@ -1,6 +1,6 @@
 require_relative 'manufacturer'
 class Train
-  ID_FORMAT = /^[a-zA-Z0-9]{3}-?([a-zA-Z0-9]){2}$/ 
+  ID_FORMAT = /^[a-zA-Z0-9]{3}-?([a-zA-Z0-9]){2}$/  #или так /^[a-z0-9]{3}-?([a-z0-9]){2}$/i
 
   include Manufacturer
 
@@ -16,8 +16,8 @@ class Train
     @type = type
     @wagons = []
     @speed = 0
-    @@trains[@id] = self
     validate!
+    @@trains[@id] = self
   end
 
   def valid?

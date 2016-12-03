@@ -37,19 +37,20 @@ class Railway
   private
 
   def create_station
-    stations ||= {}
-    index_stations ||= 0
+    @stations ||= {}
+    @index_stations ||= 0
 
     loop do
       puts "Для выхода ничего не вводите и нажмите Enter"
       puts "Введите название станции:"
       print '>'
       station_name = gets.chomp
-      
+      #Здесь можно было бы добавить валидацию, но она убьет первое условие
       if station_name == ""
         puts @stations
         menu
       else
+        #Здесь можно добавить валидацию, но тогда нельзя будет сделать retry и юзера будет выукидывать из программы
         @stations[@index_stations] = Station.new(station_name)
         @index_stations += 1
       end

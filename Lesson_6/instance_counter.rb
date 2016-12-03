@@ -3,10 +3,10 @@ module InstanceCounter
   def self.include(base)
     base.extend ClassMethods
     base.send :include, InstanceMethoods
+  end
+  
   module ClassMethods
     attr_accessor :instances
-  end
-
   module InstanceMethoods
 
     private
