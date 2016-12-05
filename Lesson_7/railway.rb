@@ -128,7 +128,7 @@ class Railway
       puts "1. Прицепить вагон"
       puts "2. Отцепить вагон"
       puts "3. Отправить поезд на станцию"
-      puts "4. Вывести список вагонов поезда"
+      puts "4. Занять место/объем в вагоне"
 
       request = gets.chomp.to_i
 
@@ -140,7 +140,7 @@ class Railway
           places = gets.to_i
           wagon = PassengerWagon.new(places)
         elsif train.type == :cargo
-          pyts "Введите пожалуйста объем свободного места в вагоне, в единицах:"
+          puts "Введите пожалуйста объем свободного места в вагоне, в единицах:"
           print ">"
           place = gets.to_i
           wagon = CargoWagon.new(place)
@@ -166,12 +166,25 @@ class Railway
           menu
         end
       when 4
-        # Не очень DRY, но по мне пока у нас 2 типа вагонов, лучше так, чем сделать у них одноименные методы. Хотя было бы неплохо вынести их в класс-родитель.
+        puts "У нас есть такие вагоны:"
         if train.type == :passenger
-          train.met { |wagon, index| puts "Номер вагона #{index+1}, тип вагона #{wagon.type}, количество свободных мест: #{wagon.free_places}, количество занятых мест #{wagon.taken_places}"}
+          train.met { |wagon, index| puts "Номер вагона #{index}, тип вагона #{wagon.type}, количество свободных мест: #{wagon.free_places}, количество занятых мест #{wagon.taken_places}"}
         elsif train.type == :cargo
-          train.met { |wagon, index| puts "Номер вагона #{index+1}, тип вагона #{wagon.type}, количество свободных мест: #{wagon.free_space}, количество занятого места #{wagon.taken_place}"}
+          train.met { |wagon, index| puts "Номер вагона #{index}, тип вагона #{wagon.type}, количество свободных мест: #{wagon.free_space}, количество занятого места #{wagon.taken_space}"}
         end
+
+        puts "Выберите пожалуйста вагон:"
+        print " > "
+        request = gets.to_i
+        if train.type == :passenger
+          train.wagons[request].take_place
+          puts "Состояние вагона #{train.wagons[request].inspect}"
+        elsif train.type == :cargo
+          train.wagons[request].take_space
+          puts "Состояние вагона #{train.wagons[request].inspect}"
+        end
+
+
       when 0
         puts "Вы ввели что-то не то"
         menu
