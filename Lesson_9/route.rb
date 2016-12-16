@@ -1,8 +1,13 @@
 # encoding: utf-8
+require_relative 'accessors'
 class Route
+  include Accessors
   attr_reader :stations
   attr_reader :start
   attr_reader :finish
+
+  validate :start :type Station
+
 
   def initialize(start, finish)
     @start = start
@@ -13,11 +18,11 @@ class Route
     @stations = [start, finish]
   end
 
-  def valid?
-    validate!
-  rescue
-    false
-  end
+  # def valid?
+  #   validate!
+  # rescue
+  #   false
+  # end
 
   def add_station(station)
     stations.insert(-2, station)
@@ -29,8 +34,8 @@ class Route
 
   private
 
-  def validate!
-    raise ArgumentError, 'Argument must be an existing station' unless (start.is_a? Station) || (finish.is_a? Station)
-    true
-  end
+  # def validate!
+  #   raise ArgumentError, 'Argument must be an existing station' unless (start.is_a? Station) || (finish.is_a? Station)
+  #   true
+  # end
 end

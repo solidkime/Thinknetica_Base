@@ -1,9 +1,11 @@
 # encoding: utf-8
 require_relative 'manufacturer'
+require_relative 'accessors'
 class Train
   ID_FORMAT = /^[a-zA-Z0-9]{3}-?([a-zA-Z0-9]){2}$/ # или так /^[a-z0-9]{3}-?([a-z0-9]){2}$/i
 
   include Manufacturer
+  include Accessors
 
   attr_reader :speed
   attr_accessor :wagons
@@ -21,11 +23,16 @@ class Train
     @@trains[@id] = self
   end
 
-  def valid?
-    validate!
-  rescue
-    false
-  end
+  # def valid?
+  #   validate!
+  # rescue
+  #   false
+  # end
+
+  validate :id :presence
+  validate :id :format ID_FORMAT
+  validate :id :type Symbol
+
 
   def met
     wagons.each_with_index do |wagon, index|
@@ -112,12 +119,12 @@ class Train
 
   protected
 
-  def validate!
-    raise "Train id can't be nil" if id.nil?
-    raise 'Train id is wrong format, contact service' if id.to_s !~ ID_FORMAT
-    raise 'Type myst be symbol' unless type.is_a? Symbol
-    true
-  end
+  # def validate!
+  #   raise "Train id can't be nil" if id.nil?
+  #   raise 'Train id is wrong format, contact service' if id.to_s !~ ID_FORMAT
+  #   raise 'Type myst be symbol' unless type.is_a? Symbol
+  #   true
+  # end
 
   # Смотреть скорость можно и не опасно, а вот менять ее на любую нельзя
   # (и невозможно моментально, если говорить о настоящем поезде).

@@ -1,8 +1,12 @@
 # encoding: utf-8
+require_relative 'accessors'
 class Station
+  include Accessors
   STATION_FORMAT = /^[A-z][a-z]+$/
   attr_reader :name
   attr_reader :trains
+
+  validate :name :presence
 
   @@all_stations = []
 
@@ -13,11 +17,11 @@ class Station
     @@all_stations << self
   end
 
-  def valid?
-    validate!
-  rescue
-    false
-  end
+  # def valid?
+  #   validate!
+  # rescue
+  #   false
+  # end
 
   def met
     trains.each do |train|
@@ -46,12 +50,12 @@ class Station
 
   private
 
-  def validate!
-    raise "Name can't be blank" if name == ''
-    raise 'Station name should be more than 3 letters' if name.length < 3
-    raise 'Station must contain only letters and start with a capital letter' if name !~ STATION_FORMAT
-    true
-  end
+  # def validate!
+  #   raise "Name can't be blank" if name == ''
+  #   raise 'Station name should be more than 3 letters' if name.length < 3
+  #   raise 'Station must contain only letters and start with a capital letter' if name !~ STATION_FORMAT
+  #   true
+  # end
   # Смотреть сколько у нас поездов в массиве указано в условии задачи,
   # а вот менять этот массив можно только через другие методы, чтобы не всунуть вместо массива что-то неподходящее.
   attr_writer :trains
