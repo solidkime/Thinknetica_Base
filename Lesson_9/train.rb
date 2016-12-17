@@ -1,25 +1,33 @@
 # encoding: utf-8
 require_relative 'manufacturer'
 require_relative 'accessors'
+require_relative 'validation'
 class Train
   ID_FORMAT = /^[a-zA-Z0-9]{3}-?([a-zA-Z0-9]){2}$/ # или так /^[a-z0-9]{3}-?([a-z0-9]){2}$/i
 
   include Manufacturer
   include Accessors
+  include Validation
 
   attr_reader :speed
   attr_accessor :wagons
   attr_reader :id
   attr_reader :type
 
+  validate :id, :presence
+  validate :id, :format, ID_FORMAT
+  validate :id, :type, Symbol
+
   @@trains = {}
+
+
 
   def initialize(id, type)
     @id = id
     @type = type
     @wagons = []
     @speed = 0
-    validate!
+    #validate!
     @@trains[@id] = self
   end
 
@@ -29,9 +37,7 @@ class Train
   #   false
   # end
 
-  validate :id :presence
-  validate :id :format ID_FORMAT
-  validate :id :type Symbol
+
 
 
   def met
