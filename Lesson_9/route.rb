@@ -1,12 +1,14 @@
 # encoding: utf-8
 require_relative 'accessors'
+require_relative 'validation'
 class Route
   include Accessors
+  include Validation
   attr_reader :stations
   attr_reader :start
   attr_reader :finish
 
-  validate :start :type Station
+  validate :start, :type_of_inst, Station
 
 
   def initialize(start, finish)
@@ -14,7 +16,7 @@ class Route
     @finish = finish
     # Это имелось ввиду? >Тут стоит добавить валидации на то, что start и first - объекты именно класса Station
     # У меня же валидация это и проверяет, правда стояла не там, насколько я понял.
-    #validate!
+    validate!
     @stations = [start, finish]
   end
 

@@ -1,12 +1,15 @@
 # encoding: utf-8
 require_relative 'accessors'
+require_relative 'validation'
 class Station
   include Accessors
-  STATION_FORMAT = /^[A-z][a-z]+$/
+  include Validation
+  STATION_FORMAT = /^[A-z][a-z][a-z]+$/
   attr_reader :name
   attr_reader :trains
 
-  validate :name :presence
+  validate :name, :presence
+  validate :name, :format, STATION_FORMAT
 
   @@all_stations = []
 

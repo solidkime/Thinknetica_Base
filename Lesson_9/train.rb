@@ -2,6 +2,7 @@
 require_relative 'manufacturer'
 require_relative 'accessors'
 require_relative 'validation'
+
 class Train
   ID_FORMAT = /^[a-zA-Z0-9]{3}-?([a-zA-Z0-9]){2}$/ # или так /^[a-z0-9]{3}-?([a-z0-9]){2}$/i
 
@@ -16,7 +17,7 @@ class Train
 
   validate :id, :presence
   validate :id, :format, ID_FORMAT
-  validate :id, :type, Symbol
+  validate :type, :type_of_inst, Symbol
 
   @@trains = {}
 
@@ -27,7 +28,7 @@ class Train
     @type = type
     @wagons = []
     @speed = 0
-    #validate!
+    validate!
     @@trains[@id] = self
   end
 

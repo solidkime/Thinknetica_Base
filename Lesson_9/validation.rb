@@ -18,7 +18,10 @@ module Validation
     def validate!
       self.class.checks.each do |check|
         inst_var = instance_variable_get("@#{check[:name]}")
-        send check[:type], check[:name], check[:args], inst_var
+        # puts 'wat'
+        # puts check[:args].inspect
+        # puts 'wat'
+        send check[:type], inst_var, check[:args]
       end
       true
     end
@@ -29,17 +32,17 @@ module Validation
       false
     end
 
-    private
+    protected
 
-    def presence(name, _arg, inst_var)
+    def presence(inst_var, _args)
       raise "Имя не может быть nil или пустой строкой" if inst_var.to_s.empty? 
     end
 
-    def format(name, regexp_args, inst_var)
+    def format(inst_var, regexp_args)
       raise "Имя должно соответствовать заданному формату" if inst_var !~ regexp_args[0]
     end
 
-    def type(name, type_args, inst_var)
+    def type_of_inst(inst_var, type_args)
       raise "Заданный атрибут не совпадает с классом" unless inst_var.class == type_args[0]
     end
   end
