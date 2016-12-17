@@ -17,9 +17,10 @@ module Validation
 
     def validate!
       self.class.checks.each do |check|
-        inst_var = instance_variable_get("@#{check[:name]}")
+        #inst_var = instance_variable_get("@#{check[:name]}")
         send check[:type], check[:name], check[:args], inst_var
       end
+      true
     end
     
     def valid?

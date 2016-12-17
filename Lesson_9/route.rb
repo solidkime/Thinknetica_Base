@@ -14,7 +14,7 @@ class Route
     @finish = finish
     # Это имелось ввиду? >Тут стоит добавить валидации на то, что start и first - объекты именно класса Station
     # У меня же валидация это и проверяет, правда стояла не там, насколько я понял.
-    validate!
+    #validate!
     @stations = [start, finish]
   end
 
